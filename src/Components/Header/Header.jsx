@@ -54,22 +54,22 @@ const Header = () => {
               <>
                 <li className={isActive('/all-pending-task-admin') ? 'active' : ''}>
                   <Link to="/all-pending-task-admin" onClick={handletoggleBtn}>
-                    <i className="fa-solid fa-layer-group"></i> All Pending Task
+                    <i className="fa-solid fa-clock"></i> All Pending Task
                   </Link>
                 </li>
                 <li className={isActive('/all-complete-task') ? 'active' : ''}>
                   <Link to="/all-complete-task" onClick={handletoggleBtn}>
-                    <i className="fa-solid fa-layer-group"></i> All Complete Task
+                    <i className="fa-solid fa-check-circle"></i> All Complete Task
                   </Link>
                 </li>
                 <li className={isActive('/all-backend-users') || isActive('/backend-account') ? 'active' : ''}>
                   <Link to="/all-backend-users" onClick={handletoggleBtn}>
-                    <i className="fa-solid fa-user"></i> All Backend Users
+                    <i className="fa-solid fa-users"></i> All Backend Users
                   </Link>
                 </li>
-                <li className={isActive('/all-field-users')  || isActive('/field-excutive-account')  ? 'active' : ''}>
+                <li className={isActive('/all-field-users') || isActive('/field-excutive-account') ? 'active' : ''}>
                   <Link to="/all-field-users" onClick={handletoggleBtn}>
-                    <i className="fa-solid fa-user"></i> All Field Users
+                    <i className="fa-solid fa-users"></i> All Field Users
                   </Link>
                 </li>
 
@@ -81,12 +81,12 @@ const Header = () => {
               <>
                 <li className={isActive('/all-task') || isActive('/add-task') ? 'active' : ''}>
                   <Link to="/all-task" onClick={handletoggleBtn}>
-                    <i className="fa-solid fa-tag"></i> Create Task
+                    <i className="fa-solid fa-tasks"></i> Create Task
                   </Link>
                 </li>
                 <li className={isActive('/all-unverify-task') ? 'active' : ''}>
                   <Link to="/all-unverify-task" onClick={handletoggleBtn}>
-                    <i className="fa-solid fa-layer-group"></i> All Unverify Task
+                    <i className="fa-solid fa-exclamation-circle"></i> All Unverify Task
                   </Link>
                 </li>
               </>

@@ -31,7 +31,7 @@ const BackendSingup = () => {
                     phoneNumber: "",
                     password: ""
                 });
-                navigate("/all-users")
+                navigate("/all-backend-users")
             }
         } catch (error) {
             if (error.response && error.response.data) {
