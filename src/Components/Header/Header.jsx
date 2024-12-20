@@ -42,7 +42,7 @@ const Header = () => {
 
         <div className={`rightNav ${sidetoggle ? 'active' : ''}`}>
           <ul>
-          <li>
+            <li>
               <Link to="/dashboard" onClick={handletoggleBtn}>
                 <i className="fa-solid fa-gauge"></i> Dashboard
               </Link>
@@ -61,18 +61,8 @@ const Header = () => {
                   </Link>
                 </li>
                 <li>
-                  <Link to="/all-team" onClick={handletoggleBtn}>
-                    <i className="fa-solid fa-tag"></i> Manage Team
-                  </Link>
-                </li>
-                <li>
                   <Link to="/all-users" onClick={handletoggleBtn}>
                     <i className="fa-solid fa-user"></i> All Backend Users
-                  </Link>
-                </li>
-                <li>
-                  <Link to="/all-team-users" onClick={handletoggleBtn}>
-                    <i className="fa-solid fa-user"></i> All Team Users
                   </Link>
                 </li>
                 <li>
@@ -80,28 +70,35 @@ const Header = () => {
                     <i className="fa-solid fa-user"></i> All Field Users
                   </Link>
                 </li>
-              
+
               </>
             )}
 
             {/* Links visible to backend users */}
             {role === 'Backend' && (
-              <li>
-                <Link to="/all-task" onClick={handletoggleBtn}>
-                  <i className="fa-solid fa-tag"></i> Create Task
-                </Link>
-              </li>
+              <>
+                <li>
+                  <Link to="/all-task" onClick={handletoggleBtn}>
+                    <i className="fa-solid fa-tag"></i> Create Task
+                  </Link>
+                </li>
+                <li>
+                  <Link to="/all-unverify-task" onClick={handletoggleBtn}>
+                    <i className="fa-solid fa-layer-group"></i> All Unverify Task
+                  </Link>
+                </li>
+              </>
             )}
 
             {/* Links visible to team leader */}
             {role === 'Team Leader' && (
               <>
                 <li>
-                  <Link to="/all-task-team-leader" onClick={handletoggleBtn}>
+                  <Link to="/all-pending-task-backend" onClick={handletoggleBtn}>
                     <i className="fa-solid fa-layer-group"></i> All Task
                   </Link>
                 </li>
-               
+
                 <li>
                   <Link to="/all-pending-task" onClick={handletoggleBtn}>
                     <i className="fa-solid fa-layer-group"></i> All Draft Task

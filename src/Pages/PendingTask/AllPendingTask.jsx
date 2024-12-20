@@ -9,7 +9,7 @@ const AllPendingTask = () => {
     const [remarkData, setRemarkData] = useState([]);
     const [isLoading, setIsLoading] = useState(true);
     const [selectedRemark, setSelectedRemark] = useState('');
-    const [selectedImages, setSelectedImages] = useState([]); 
+    const [selectedImages, setSelectedImages] = useState([]);
     const [showModal, setShowModal] = useState(false);
 
     const tealLeaderId = sessionStorage.getItem("teamLeaderId")
@@ -34,9 +34,9 @@ const AllPendingTask = () => {
         const fetchRemarkData = async () => {
             try {
                 const response = await axios.get('https://www.api.goldstarstamps.com/api/get-remark');
-                const filterDataRemak = response.data.data 
-                const AllFilterdata = filterDataRemak.filter((x)=>x.taskID.teamLeaderOrId===tealLeaderId)
-                setRemarkData(AllFilterdata);
+                const filterDataRemak = response.data.data
+                // const AllFilterdata = filterDataRemak.filter((x) => x.taskID.teamLeaderOrId === tealLeaderId)
+                setRemarkData(filterDataRemak);
             } catch (error) {
                 console.error('Error fetching remarks', error);
             }
@@ -56,14 +56,14 @@ const AllPendingTask = () => {
         const doc = new jsPDF();
         const pageHeight = doc.internal.pageSize.height;
         const pageWidth = doc.internal.pageSize.width;
-    
+
         const margin = 10;
         const availableWidth = pageWidth - 2 * margin;
         const availableHeight = pageHeight - 2 * margin;
-    
+
         let totalImageHeight = 0;
         const imageHeights = [];
-    
+
         // Load all images and calculate total height for proportionate scaling
         const loadedImages = await Promise.all(
             images.map(imgUrl => {
@@ -71,16 +71,16 @@ const AllPendingTask = () => {
                     const img = new Image();
                     img.crossOrigin = 'anonymous'; // Allow cross-origin image loading
                     img.src = imgUrl;
-    
+
                     img.onload = () => {
                         const aspectRatio = img.width / img.height;
                         const height = availableWidth / 2 / aspectRatio; // Scale image height proportionally to fit within half the width
                         imageHeights.push(height);
                         totalImageHeight += height; // Calculate the total height of all images combined
-    
+
                         resolve(img);
                     };
-    
+
                     img.onerror = () => {
                         console.error('Failed to load image:', imgUrl);
                         resolve(null); // Skip this image if there's an error
@@ -88,30 +88,30 @@ const AllPendingTask = () => {
                 });
             })
         );
-    
+
         let scalingFactor = 1;
         if (totalImageHeight > availableHeight) {
             scalingFactor = availableHeight / totalImageHeight; // Adjust scaling factor if total image height exceeds available height
         }
-    
+
         let positionY = margin;
         let positionX = margin;
         let imagesInRow = 0;
-    
+
         loadedImages.forEach((img, index) => {
             if (img) {
                 const aspectRatio = img.width / img.height;
                 const width = availableWidth / 2 - margin; // Width for two images per row
                 const height = imageHeights[index] * scalingFactor;
-    
+
                 // Log the image positioning and dimensions
                 console.log('Adding Image:', index, 'PositionY:', positionY, 'PositionX:', positionX, 'Width:', width, 'Height:', height);
-    
+
                 doc.addImage(img, 'JPEG', positionX, positionY, width, height);
-    
+
                 // Track the position for the next image in the row
                 imagesInRow++;
-    
+
                 if (imagesInRow === 2) {
                     imagesInRow = 0; // Reset for the next row
                     positionY += height + margin; // Move to the next line after two images
@@ -121,11 +121,11 @@ const AllPendingTask = () => {
                 }
             }
         });
-    
+
         // If there’s space left, you may want to add extra margin before the next row of images.
         doc.save(`task_${taskId}_images.pdf`);
     };
-    
+
 
 
 
@@ -169,7 +169,7 @@ const AllPendingTask = () => {
             <ToastContainer />
             <div className="bread">
                 <div className="head">
-                    <h4>All Draft Task</h4>
+                    <h4>Unverify Task</h4>
                 </div>
             </div>
 

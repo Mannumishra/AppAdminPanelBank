@@ -49,7 +49,6 @@ const FieldUsers = () => {
                                 <th scope="col">Email</th>
                                 <th scope="col">Phone Number</th>
                                 <th scope="col">Role</th>
-                                <th scope="col">Team Leader</th>
                                 <th scope="col">Created At</th>
                                 {/* Add more columns as needed */}
                             </tr>
@@ -64,7 +63,6 @@ const FieldUsers = () => {
                                         <th>{item.email}</th>
                                         <th>{item.phoneNumber}</th>
                                         <th>{item.role}</th>
-                                        <th>{item.teamLeader.name}</th>
                                         <th>{formatDate(item.createdAt)}</th>
                                     </tr>
                                 )

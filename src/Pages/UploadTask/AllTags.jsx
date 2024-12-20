@@ -12,7 +12,9 @@ const AllTags = () => {
         const fetchTasks = async () => {
             try {
                 const response = await axios.get('https://www.api.goldstarstamps.com/api/get-all-task');
-                setTasks(response.data.data); // Set the tasks data from the API response
+                const filtertask = response.data.data
+                const allfilterData = filtertask.filter((x)=>x.status==="Pending")
+                setTasks(allfilterData); // Set the tasks data from the API response
                 setIsLoading(false);
             } catch (error) {
                 toast.error('Error fetching tasks');
@@ -31,7 +33,7 @@ const AllTags = () => {
                     <h4>All Tasks</h4>
                 </div>
                 <div className="links">
-                    <Link to="/add-task" className="add-new">Add New <i className="fa-solid fa-plus"></i></Link>
+                    <Link to="/add-task" className="add-new">Add New Task <i className="fa-solid fa-plus"></i></Link>
                 </div>
             </div>
 
@@ -64,7 +66,6 @@ const AllTags = () => {
                                 <th scope="col">Applicant Address</th>
                                 <th scope="col">Trigger</th>
                                 <th scope="col">Verifier</th>
-                                <th scope="col">Team Leader</th>
                                 <th scope="col">Status</th>
                                 {/* <th scope="col">Edit</th>
                                 <th scope="col">Delete</th> */}
@@ -82,7 +83,6 @@ const AllTags = () => {
                                     <td>{task.address}</td>
                                     <td>{task.trigger}</td>
                                     <td>{task.verifierNameOrId}</td>
-                                    <td>{task.teamLeaderOrId}</td>
                                     <td>{task.status}</td>
                                     {/* <td><Link to={`/edit-task/${task._id}`} className="bt edit">Edit <i className="fa-solid fa-pen-to-square"></i></Link></td>
                                     <td><button className="bt delete" onClick={() => handleDelete(task._id)}>Delete <i className="fa-solid fa-trash"></i></button></td> */}

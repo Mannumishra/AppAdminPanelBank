@@ -9,30 +9,9 @@ const FieldSignup = () => {
         name: "",
         email: "",
         phoneNumber: "",
-        fieldExcutiveId:"",
-        teamLeader: "",  // Changed from backend to teamLeader
+        fieldExcutiveId: "",
         password: ""
     });
-
-    const [teamLeaders, setTeamLeaders] = useState([]);
-
-    const getApiData = async () => {
-        try {
-            const res = await axios.get("https://www.api.goldstarstamps.com/api/get-team-leader");
-            if (res.status === 200) {
-                setTeamLeaders(res.data.data);
-            } else {
-                toast.error("Failed to fetch backend data.");
-            }
-        } catch (error) {
-            console.error("Error fetching backend data:", error);
-            toast.error("An error occurred while fetching backend data.");
-        }
-    };
-
-    useEffect(() => {
-        getApiData();
-    }, []);
 
     const handleChange = (e) => {
         const { name, value } = e.target;
@@ -50,7 +29,7 @@ const FieldSignup = () => {
                     name: "",
                     email: "",
                     phoneNumber: "",
-                    fieldExcutiveId:"",
+                    fieldExcutiveId: "",
                     teamLeader: "", // Resetting teamLeader to an empty string
                     password: ""
                 });
@@ -127,21 +106,6 @@ const FieldSignup = () => {
                                 required
                                 placeholder='Phone Number'
                             />
-                        </div>
-                        <div className="form-group">
-                            <label>Select Team Leader</label>
-                            <select
-                                name="teamLeader"
-                                value={data.teamLeader}
-                                onChange={handleChange}
-                                className='form-control'
-                                required
-                            >
-                                <option value="" disabled>Select Team Leader</option>
-                                {teamLeaders.map((item) => (
-                                    <option value={item._id} key={item._id}>{item.name}</option>
-                                ))}
-                            </select>
                         </div>
                         <div className="form-group">
                             <label>Password</label>

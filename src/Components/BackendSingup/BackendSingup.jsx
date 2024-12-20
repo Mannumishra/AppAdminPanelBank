@@ -9,27 +9,9 @@ const BackendSingup = () => {
         name: "",
         email: "",
         phoneNumber: "",
-        team: "",
-        backendId:"",
+        backendId: "",
         password: ""
     });
-
-    const [teams, setTeams] = useState([]); // To store fetched teams
-
-    // Fetch teams when the component mounts
-    useEffect(() => {
-        const fetchTeams = async () => {
-            try {
-                const response = await axios.get('https://www.api.goldstarstamps.com/api/get-team');
-                if (response.status === 200) {
-                    setTeams(response.data.data); // Assuming API returns { teams: [...] }
-                }
-            } catch (error) {
-                console.error('Error fetching teams:', error);
-            }
-        };
-        fetchTeams();
-    }, []);
 
     // Update the state based on input changes
     const handleChange = (e) => {
@@ -47,7 +29,6 @@ const BackendSingup = () => {
                     name: "",
                     email: "",
                     phoneNumber: "",
-                    team: "",
                     password: ""
                 });
                 navigate("/all-users")
@@ -125,23 +106,6 @@ const BackendSingup = () => {
                                 required
                                 placeholder='Phone Number'
                             />
-                        </div>
-                        <div className="form-group">
-                            <label>Select Team</label>
-                            <select
-                                name="team"
-                                value={data.team}
-                                onChange={handleChange}
-                                className="form-control"
-                                required
-                            >
-                                <option value="" disabled>Select Team</option>
-                                {teams.map((team) => (
-                                    <option key={team._id} value={team._id}>
-                                        {team.teamName}
-                                    </option>
-                                ))}
-                            </select>
                         </div>
                         <div className="form-group">
                             <label>Password</label>

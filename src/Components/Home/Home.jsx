@@ -55,11 +55,11 @@ const Home = () => {
               <Route path='/field-excutive-account' element={<FieldSignup />} />
 
 
-              <Route path='/all-pending-task' element={<AllPendingTask/>} />
+              <Route path='/all-unverify-task' element={<AllPendingTask/>} />
 
               <Route path='/all-complete-task' element={<AllCompleteTask/>} />
 
-              <Route path='/all-task-team-leader' element={<AllTeamLeaderTask/>} />
+              <Route path='/all-pending-task-backend' element={<AllTeamLeaderTask/>} />
               
               <Route path='/all-pending-task-admin' element={<AdminPendingTask/>} />
 

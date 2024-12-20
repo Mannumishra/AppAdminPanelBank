@@ -25,14 +25,14 @@ const AllTeamLeaderTask = () => {
         fetchTasks();
     }, []);
 
-    const filterData = tasks.filter((x)=>x.status==="Pending" && x.teamLeaderOrId===teamLeaderId)
+    const filterData = tasks.filter((x)=>x.status==="Pending")
 
     return (
         <>
             <ToastContainer />
             <div className="bread">
                 <div className="head">
-                    <h4>All Team Leader Tasks</h4>
+                    <h4>All Pending Tasks</h4>
                 </div>
             </div>
 
