@@ -36,20 +36,6 @@ const AllTags = () => {
                     <Link to="/add-task" className="add-new">Add New Task <i className="fa-solid fa-plus"></i></Link>
                 </div>
             </div>
-
-            <div className="filteration">
-                <div className="selects">
-                    {/* <select>
-                        <option>Ascending Order</option>
-                        <option>Descending Order</option>
-                    </select> */}
-                </div>
-                <div className="search">
-                    <label htmlFor="search">Search </label> &nbsp;
-                    <input type="text" name="search" id="search" />
-                </div>
-            </div>
-
             <section className="d-table">
                 {isLoading ? (
                     <p>Loading tasks...</p>

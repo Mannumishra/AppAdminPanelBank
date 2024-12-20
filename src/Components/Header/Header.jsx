@@ -1,11 +1,12 @@
 import React, { useState, useEffect } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import './Header.css';
 
 const Header = () => {
   const [sidetoggle, setSideToggle] = useState(false);
   const [role, setRole] = useState(null); // State to store user role
   const navigate = useNavigate();
+  const location = useLocation();
 
   useEffect(() => {
     const storedRole = sessionStorage.getItem('role');
@@ -23,6 +24,7 @@ const Header = () => {
     window.location.href = '/login'; // Redirect to the login page
   };
 
+  const isActive = (path) => location.pathname.startsWith(path);
   return (
     <>
       <header>
@@ -42,7 +44,7 @@ const Header = () => {
 
         <div className={`rightNav ${sidetoggle ? 'active' : ''}`}>
           <ul>
-            <li>
+            <li className={isActive('/dashboard') ? 'active' : ''}>
               <Link to="/dashboard" onClick={handletoggleBtn}>
                 <i className="fa-solid fa-gauge"></i> Dashboard
               </Link>
@@ -50,22 +52,22 @@ const Header = () => {
             {/* Links visible to admin */}
             {role === 'Admin' && (
               <>
-                <li>
+                <li className={isActive('/all-pending-task-admin') ? 'active' : ''}>
                   <Link to="/all-pending-task-admin" onClick={handletoggleBtn}>
                     <i className="fa-solid fa-layer-group"></i> All Pending Task
                   </Link>
                 </li>
-                <li>
+                <li className={isActive('/all-complete-task') ? 'active' : ''}>
                   <Link to="/all-complete-task" onClick={handletoggleBtn}>
                     <i className="fa-solid fa-layer-group"></i> All Complete Task
                   </Link>
                 </li>
-                <li>
-                  <Link to="/all-users" onClick={handletoggleBtn}>
+                <li className={isActive('/all-backend-users') ? 'active' : ''}>
+                  <Link to="/all-backend-users" onClick={handletoggleBtn}>
                     <i className="fa-solid fa-user"></i> All Backend Users
                   </Link>
                 </li>
-                <li>
+                <li className={isActive('/all-field-users') ? 'active' : ''}>
                   <Link to="/all-field-users" onClick={handletoggleBtn}>
                     <i className="fa-solid fa-user"></i> All Field Users
                   </Link>
@@ -77,12 +79,12 @@ const Header = () => {
             {/* Links visible to backend users */}
             {role === 'Backend' && (
               <>
-                <li>
+                <li className={isActive('/all-task') || isActive('/add-task') ? 'active' : ''}>
                   <Link to="/all-task" onClick={handletoggleBtn}>
                     <i className="fa-solid fa-tag"></i> Create Task
                   </Link>
                 </li>
-                <li>
+                <li className={isActive('/all-unverify-task') ? 'active' : ''}>
                   <Link to="/all-unverify-task" onClick={handletoggleBtn}>
                     <i className="fa-solid fa-layer-group"></i> All Unverify Task
                   </Link>

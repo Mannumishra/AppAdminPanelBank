@@ -150,19 +150,6 @@ const AllCompleteTask = () => {
                 </div>
             </div>
 
-            <div className="filteration">
-                <div className="selects">
-                    {/* <select>
-                        <option>Ascending Order</option>
-                        <option>Descending Order</option>
-                    </select> */}
-                </div>
-                <div className="search">
-                    <label htmlFor="search">Search </label> &nbsp;
-                    <input type="text" name="search" id="search" />
-                </div>
-            </div>
-
             <section className="d-table">
                 {isLoading ? (
                     <p>Loading tasks...</p>
@@ -172,15 +159,14 @@ const AllCompleteTask = () => {
                             <tr>
                                 <th scope="col">Sr.No.</th>
                                 <th scope="col">Status</th>
-                                <th scope="col">Assign Date</th>
-                                <th scope="col">Bank Name</th>
+                                <th scope="col">Ass Date</th>
+                                <th scope="col">Bank</th>
                                 <th scope="col">Product</th>
-                                <th scope="col">Applicant Name</th>
-                                <th scope="col">Contact Number</th>
-                                <th scope="col">Applicant Address</th>
-                                <th scope="col">Trigger</th>
+                                <th scope="col">Name</th>
+                                <th scope="col">Number</th>
+                                <th scope="col">Address</th>
+                                <th scope="col">Tri</th>
                                 <th scope="col">Verifier</th>
-                                <th scope="col">Team Leader</th>
                                 <th scope="col">Images</th>
                                 <th scope="col">Remark</th>
                                 {/* <th scope="col">Edit</th>
@@ -204,7 +190,6 @@ const AllCompleteTask = () => {
                                         <td>{task.address}</td>
                                         <td>{task.trigger}</td>
                                         <td>{task.verifierNameOrId}</td>
-                                        <td>{task.teamLeaderOrId}</td>
                                         <td>
                                             {allImages.length > 0 ? (
                                                 <button onClick={() => downloadImagesAsPdf(allImages, task._id)} className='btn btn-success'>

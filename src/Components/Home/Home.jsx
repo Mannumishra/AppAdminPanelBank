@@ -39,7 +39,7 @@ const Home = () => {
 
 
               {/* Orders */}
-              <Route path={"/all-users"} element={<AllUsers />} />
+              <Route path={"/all-backend-users"} element={<AllUsers />} />
               <Route path={"/all-team-users"} element={<TeamUsers />} />
               <Route path={"/all-field-users"} element={<FieldUsers />} />
 

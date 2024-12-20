@@ -172,15 +172,6 @@ const AllPendingTask = () => {
                     <h4>Unverify Task</h4>
                 </div>
             </div>
-
-            <div className="filteration">
-                <div className="selects"></div>
-                <div className="search">
-                    <label htmlFor="search">Search </label>&nbsp;
-                    <input type="text" name="search" id="search" />
-                </div>
-            </div>
-
             <section className="d-table">
                 {isLoading ? (
                     <p>Loading tasks...</p>

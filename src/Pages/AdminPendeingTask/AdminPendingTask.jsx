@@ -32,20 +32,7 @@ const AdminPendingTask = () => {
             <ToastContainer />
             <div className="bread">
                 <div className="head">
-                    <h4>All Team Leader Tasks</h4>
-                </div>
-            </div>
-
-            <div className="filteration">
-                <div className="selects">
-                    {/* <select>
-                        <option>Ascending Order</option>
-                        <option>Descending Order</option>
-                    </select> */}
-                </div>
-                <div className="search">
-                    <label htmlFor="search">Search </label> &nbsp;
-                    <input type="text" name="search" id="search" />
+                    <h4>All Pending Tasks</h4>
                 </div>
             </div>
 
