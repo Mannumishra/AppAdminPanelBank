@@ -62,12 +62,12 @@ const Header = () => {
                     <i className="fa-solid fa-layer-group"></i> All Complete Task
                   </Link>
                 </li>
-                <li className={isActive('/all-backend-users') ? 'active' : ''}>
+                <li className={isActive('/all-backend-users') || isActive('/backend-account') ? 'active' : ''}>
                   <Link to="/all-backend-users" onClick={handletoggleBtn}>
                     <i className="fa-solid fa-user"></i> All Backend Users
                   </Link>
                 </li>
-                <li className={isActive('/all-field-users') ? 'active' : ''}>
+                <li className={isActive('/all-field-users')  || isActive('/field-excutive-account')  ? 'active' : ''}>
                   <Link to="/all-field-users" onClick={handletoggleBtn}>
                     <i className="fa-solid fa-user"></i> All Field Users
                   </Link>

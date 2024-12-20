@@ -52,7 +52,7 @@ const BackendSingup = () => {
                     <h4>Add Backend Member</h4>
                 </div>
                 <div className="links">
-                    <Link to="/all-users" className="add-new">Back <i className="fa-regular fa-circle-left"></i></Link>
+                    <Link to="/all-backend-users" className="add-new">Back <i className="fa-regular fa-circle-left"></i></Link>
                 </div>
             </div>
             <div className="main-login">
