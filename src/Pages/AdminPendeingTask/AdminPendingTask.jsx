@@ -7,7 +7,9 @@ import 'react-toastify/dist/ReactToastify.css';
 const AdminPendingTask = () => {
     const [tasks, setTasks] = useState([]);
     const [isLoading, setIsLoading] = useState(true);
-    const teamLeaderId =  sessionStorage.getItem("teamLeaderId")
+    const teamLeaderId = sessionStorage.getItem("teamLeaderId")
+    const [currentPage, setCurrentPage] = useState(1);
+    const [tasksPerPage] = useState(10); // Number of tasks per page
 
     useEffect(() => {
         const fetchTasks = async () => {
@@ -25,8 +27,32 @@ const AdminPendingTask = () => {
         fetchTasks();
     }, []);
 
-    const filterData = tasks.filter((x)=>x.status==="Pending")
+    const filterData = tasks.filter((x) => x.status === "Pending")
 
+     // Pagination logic
+     const indexOfLastTask = currentPage * tasksPerPage;
+     const indexOfFirstTask = indexOfLastTask - tasksPerPage;
+     const currentTasks = filterData.slice(indexOfFirstTask, indexOfLastTask);
+ 
+     const totalPages = Math.ceil(filterData.length / tasksPerPage);
+ 
+     const paginate = (pageNumber) => {
+         setCurrentPage(pageNumber);
+     };
+ 
+     const handleNext = () => {
+         if (currentPage < totalPages) {
+             setCurrentPage((prevPage) => prevPage + 1);
+         }
+     };
+ 
+     const handlePrevious = () => {
+         if (currentPage > 1) {
+             setCurrentPage((prevPage) => prevPage - 1);
+         }
+     };
+
+     
     return (
         <>
             <ToastContainer />
@@ -40,6 +66,7 @@ const AdminPendingTask = () => {
                 {isLoading ? (
                     <p>Loading tasks...</p>
                 ) : (
+                   <>
                     <table className="table table-bordered table-striped table-hover">
                         <thead>
                             <tr>
@@ -58,7 +85,7 @@ const AdminPendingTask = () => {
                             </tr>
                         </thead>
                         <tbody>
-                            {filterData.map((task, index) => (
+                            {currentTasks.map((task, index) => (
                                 <tr key={task._id}>
                                     <th scope="row">{index + 1}</th>
                                     <td>{task.status}</td>
@@ -76,6 +103,32 @@ const AdminPendingTask = () => {
                             ))}
                         </tbody>
                     </table>
+                    <div className="pagination">
+                            <button
+                                onClick={handlePrevious}
+                                disabled={currentPage === 1}
+                                className="prev-btn"
+                            >
+                                Previous
+                            </button>
+                            {Array.from({ length: totalPages }, (_, i) => (
+                                <button
+                                    key={i + 1}
+                                    onClick={() => paginate(i + 1)}
+                                    className={currentPage === i + 1 ? 'active' : ''}
+                                >
+                                    {i + 1}
+                                </button>
+                            ))}
+                            <button
+                                onClick={handleNext}
+                                disabled={currentPage === totalPages}
+                                className="next-btn"
+                            >
+                                Next
+                            </button>
+                        </div>
+                   </>
                 )}
             </section>
         </>

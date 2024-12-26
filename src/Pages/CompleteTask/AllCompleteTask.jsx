@@ -28,6 +28,21 @@ const AllCompleteTask = () => {
         fetchTasks();
     }, []);
 
+
+    const handleDelete = async (id) => {
+        try {
+            const response = await axios.delete(`https://www.api.goldstarstamps.com/api/delete-task/${id}`);
+            if (response.status === 200) {
+                toast.success('Task deleted successfully');
+                setTasks((prevTasks) => prevTasks.filter((task) => task._id !== id)); // Remove the deleted task from the list
+            } else {
+                toast.error('Failed to delete task');
+            }
+        } catch (error) {
+            toast.error('Error deleting task');
+        }
+    };
+
       // Fetch remarks
       useEffect(() => {
         const fetchRemarkData = async () => {
@@ -169,8 +184,8 @@ const AllCompleteTask = () => {
                                 <th scope="col">Verifier</th>
                                 <th scope="col">Images</th>
                                 <th scope="col">Remark</th>
-                                {/* <th scope="col">Edit</th>
-                                <th scope="col">Delete</th> */}
+                                {/* <th scope="col">Edit</th> */}
+                                <th scope="col">Delete</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -207,7 +222,7 @@ const AllCompleteTask = () => {
                                                 View
                                             </button>
                                         </td>
-                                      
+                                        <td><button className="bt delete" onClick={() => handleDelete(task._id)}><i className="fa-solid fa-trash"></i></button></td>
                                     </tr>
                                 );
                             })}
